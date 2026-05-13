@@ -19,3 +19,20 @@ func TestRepeat(t *testing.T) {
 		}
 	}
 }
+
+func TestReverse(t *testing.T) {
+	cases := []struct {
+		in   string
+		want string
+	}{
+		{"", ""},               // empty string
+		{"hello", "olleh"},     // ASCII
+		{"héllo", "olléh"},     // multi-byte UTF-8
+		{"racecar", "racecar"}, // palindrome
+	}
+	for _, c := range cases {
+		if got := Reverse(c.in); got != c.want {
+			t.Errorf("Reverse(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
