@@ -1,6 +1,8 @@
 package strings
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestRepeat(t *testing.T) {
 	cases := []struct {
@@ -33,6 +35,49 @@ func TestReverse(t *testing.T) {
 	for _, c := range cases {
 		if got := Reverse(c.in); got != c.want {
 			t.Errorf("Reverse(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
+
+func TestAppend(t *testing.T) {
+	cases := []struct {
+		s, suffix, want string
+	}{
+		{"", "", ""},
+		{"hello", "", "hello"},
+		{"", "world", "world"},
+		{"hello", " world", "hello world"},
+		{"こんにちは", "世界", "こんにちは世界"},
+	}
+	for _, c := range cases {
+		if got := Append(c.s, c.suffix); got != c.want {
+			t.Errorf("Append(%q, %q) = %q, want %q", c.s, c.suffix, got, c.want)
+		}
+	}
+}
+
+func TestReplaceFirst(t *testing.T) {
+	cases := []struct {
+		s, old, new, want string
+	}{
+		// old not present
+		{"hello", "xyz", "!", "hello"},
+		// empty s
+		{"", "a", "b", ""},
+		// single occurrence
+		{"hello world", "world", "Go", "hello Go"},
+		// multiple occurrences — only first replaced
+		{"aaa", "a", "b", "baa"},
+		// empty old (inserts at start)
+		{"hello", "", "X", "Xhello"},
+		// Unicode
+		{"こんにちは世界", "世界", "Go", "こんにちはGo"},
+		// replacement is empty (deletion of first occurrence)
+		{"foobar", "foo", "", "bar"},
+	}
+	for _, c := range cases {
+		if got := ReplaceFirst(c.s, c.old, c.new); got != c.want {
+			t.Errorf("ReplaceFirst(%q, %q, %q) = %q, want %q", c.s, c.old, c.new, got, c.want)
 		}
 	}
 }
