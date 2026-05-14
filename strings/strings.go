@@ -23,3 +23,9 @@ func Reverse(s string) string {
 	}
 	return string(runes)
 }
+
+// Append returns s with suffix concatenated onto the end.
+func Append(s, suffix string) string {
+	return s + suffix
+}
+

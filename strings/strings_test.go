@@ -1,6 +1,8 @@
 package strings
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestRepeat(t *testing.T) {
 	cases := []struct {
@@ -36,3 +38,21 @@ func TestReverse(t *testing.T) {
 		}
 	}
 }
+
+func TestAppend(t *testing.T) {
+	cases := []struct {
+		s, suffix, want string
+	}{
+		{"", "", ""},
+		{"hello", "", "hello"},
+		{"", "world", "world"},
+		{"hello", " world", "hello world"},
+		{"こんにちは", "世界", "こんにちは世界"},
+	}
+	for _, c := range cases {
+		if got := Append(c.s, c.suffix); got != c.want {
+			t.Errorf("Append(%q, %q) = %q, want %q", c.s, c.suffix, got, c.want)
+		}
+	}
+}
+
