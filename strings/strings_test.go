@@ -56,28 +56,3 @@ func TestAppend(t *testing.T) {
 	}
 }
 
-func TestReplaceFirst(t *testing.T) {
-	cases := []struct {
-		s, old, new, want string
-	}{
-		// old not present
-		{"hello", "xyz", "!", "hello"},
-		// empty s
-		{"", "a", "b", ""},
-		// single occurrence
-		{"hello world", "world", "Go", "hello Go"},
-		// multiple occurrences — only first replaced
-		{"aaa", "a", "b", "baa"},
-		// empty old (inserts at start)
-		{"hello", "", "X", "Xhello"},
-		// Unicode
-		{"こんにちは世界", "世界", "Go", "こんにちはGo"},
-		// replacement is empty (deletion of first occurrence)
-		{"foobar", "foo", "", "bar"},
-	}
-	for _, c := range cases {
-		if got := ReplaceFirst(c.s, c.old, c.new); got != c.want {
-			t.Errorf("ReplaceFirst(%q, %q, %q) = %q, want %q", c.s, c.old, c.new, got, c.want)
-		}
-	}
-}

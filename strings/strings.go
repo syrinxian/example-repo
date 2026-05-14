@@ -2,8 +2,6 @@
 // AgentPatron end-to-end smoke test repository.
 package strings
 
-import stdstrings "strings"
-
 // Repeat returns s concatenated n times. If n is <= 0 it returns "".
 func Repeat(s string, n int) string {
 	if n <= 0 {
@@ -31,12 +29,3 @@ func Append(s, suffix string) string {
 	return s + suffix
 }
 
-// ReplaceFirst returns a copy of s with the first occurrence of old
-// replaced by new. If old is not present in s, s is returned unchanged.
-func ReplaceFirst(s, old, new string) string {
-	i := stdstrings.Index(s, old)
-	if i < 0 {
-		return s
-	}
-	return s[:i] + new + s[i+len(old):]
-}
