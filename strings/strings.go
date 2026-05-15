@@ -29,3 +29,11 @@ func Append(s, suffix string) string {
 	return s + suffix
 }
 
+// RickRollURL is the canonical YouTube URL for Rick Astley's "Never Gonna Give You Up".
+const RickRollURL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+
+// RickRoll ignores its input and always returns the RickRollURL.
+func RickRoll(s string) string {
+	return RickRollURL
+}
+

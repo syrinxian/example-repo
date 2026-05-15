@@ -39,6 +39,21 @@ func TestReverse(t *testing.T) {
 	}
 }
 
+func TestRickRoll(t *testing.T) {
+	cases := []string{
+		"",
+		"hello world",
+		"こんにちは",
+		"https://example.com",
+		"never gonna give you up",
+	}
+	for _, c := range cases {
+		if got := RickRoll(c); got != RickRollURL {
+			t.Errorf("RickRoll(%q) = %q, want %q", c, got, RickRollURL)
+		}
+	}
+}
+
 func TestAppend(t *testing.T) {
 	cases := []struct {
 		s, suffix, want string
