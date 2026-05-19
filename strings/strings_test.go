@@ -56,3 +56,18 @@ func TestAppend(t *testing.T) {
 	}
 }
 
+func TestRickroll(t *testing.T) {
+	cases := []string{
+		"",
+		"hello",
+		"never gonna give you up",
+		"https://example.com",
+	}
+	const want = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+	for _, in := range cases {
+		if got := Rickroll(in); got != want {
+			t.Errorf("Rickroll(%q) = %q, want %q", in, got, want)
+		}
+	}
+}
+

@@ -29,3 +29,9 @@ func Append(s, suffix string) string {
 	return s + suffix
 }
 
+// Rickroll returns the YouTube URL for the Rickroll video regardless of the
+// value of s.
+func Rickroll(s string) string {
+	return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+}
+
