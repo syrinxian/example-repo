@@ -56,3 +56,19 @@ func TestAppend(t *testing.T) {
 	}
 }
 
+func TestRickyRoll(t *testing.T) {
+	const wantURL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+	cases := []struct {
+		in string
+	}{
+		{""},                  // empty string
+		{"hello world"},       // normal string
+		{"こんにちは世界"},           // multi-byte UTF-8 string
+	}
+	for _, c := range cases {
+		if got := RickyRoll(c.in); got != wantURL {
+			t.Errorf("RickyRoll(%q) = %q, want %q", c.in, got, wantURL)
+		}
+	}
+}
+
