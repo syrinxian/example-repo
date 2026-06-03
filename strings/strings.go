@@ -29,9 +29,3 @@ func Append(s, suffix string) string {
 	return s + suffix
 }
 
-// RickyRoll ignores the input string and returns the YouTube URL for the
-// classic Rick Astley "Never Gonna Give You Up" music video.
-func RickyRoll(s string) string {
-	return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-}
-

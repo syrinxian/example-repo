@@ -6,7 +6,7 @@ repository.
 ## Repository overview
 
 `example-repo` is a small throwaway Go module used by the AgentPatron
-end-to-end smoke test. It contains a single `strings` package with four
+end-to-end smoke test. It contains a single `strings` package with three
 exported helper functions.
 
 ## Module information
@@ -56,7 +56,6 @@ Import path: `github.com/syrinxian/example-repo/strings`
 | `Repeat(s string, n int) string` | Returns `s` concatenated `n` times; returns `""` when `n <= 0`. |
 | `Reverse(s string) string` | Returns `s` with its runes in reversed order; correctly handles multi-byte UTF-8 characters. |
 | `Append(s, suffix string) string` | Returns `s` with `suffix` concatenated onto the end. |
-| `RickyRoll(s string) string` | Ignores the input string and returns the YouTube URL for the classic Rick Astley "Never Gonna Give You Up" music video. |
 
 ## Coding conventions
 
