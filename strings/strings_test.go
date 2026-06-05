@@ -1,6 +1,7 @@
 package strings
 
 import (
+	"strconv"
 	"testing"
 )
 
@@ -52,6 +53,42 @@ func TestAppend(t *testing.T) {
 	for _, c := range cases {
 		if got := Append(c.s, c.suffix); got != c.want {
 			t.Errorf("Append(%q, %q) = %q, want %q", c.s, c.suffix, got, c.want)
+		}
+	}
+}
+
+func TestRandomNumberString(t *testing.T) {
+	// Deterministic edge cases
+	cases := []struct {
+		max int
+	}{
+		{0},  // only valid result is "0"
+		{-5}, // negative max clamped to 0; only valid result is "0"
+	}
+	for _, c := range cases {
+		got := RandomNumberString(c.max)
+		n, err := strconv.Atoi(got)
+		if err != nil {
+			t.Errorf("RandomNumberString(%d) = %q; not a valid integer", c.max, got)
+		}
+		clampedMax := c.max
+		if clampedMax < 0 {
+			clampedMax = 0
+		}
+		if n < 0 || n > clampedMax {
+			t.Errorf("RandomNumberString(%d) = %d; out of range [0, %d]", c.max, n, clampedMax)
+		}
+	}
+
+	// Non-deterministic: run 50 iterations with max=100 and verify range
+	for i := 0; i < 50; i++ {
+		got := RandomNumberString(100)
+		n, err := strconv.Atoi(got)
+		if err != nil {
+			t.Fatalf("RandomNumberString(100) = %q; not a valid integer", got)
+		}
+		if n < 0 || n > 100 {
+			t.Errorf("RandomNumberString(100) = %d; want value in [0, 100]", n)
 		}
 	}
 }

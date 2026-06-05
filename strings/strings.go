@@ -2,6 +2,11 @@
 // AgentPatron end-to-end smoke test repository.
 package strings
 
+import (
+	"math/rand"
+	"strconv"
+)
+
 // Repeat returns s concatenated n times. If n is <= 0 it returns "".
 func Repeat(s string, n int) string {
 	if n <= 0 {
@@ -27,5 +32,14 @@ func Reverse(s string) string {
 // Append returns s with suffix concatenated onto the end.
 func Append(s, suffix string) string {
 	return s + suffix
+}
+
+// RandomNumberString returns a random integer in the range [0, max] as a
+// decimal string. If max is less than 0 it is treated as 0.
+func RandomNumberString(max int) string {
+	if max < 0 {
+		max = 0
+	}
+	return strconv.Itoa(rand.Intn(max + 1))
 }
 
