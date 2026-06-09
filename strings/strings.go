@@ -31,10 +31,17 @@ func Append(s, suffix string) string {
 	return s + suffix
 }
 
-// RandomLetter returns a single randomly chosen lowercase ASCII letter ('a'–'z')
-// as a one-character string.
+// RandomLetters returns a string of n randomly chosen lowercase ASCII letters
+// ('a'–'z'). When n <= 0 it returns "".
 // Pass a seeded *rand.Rand for reproducible results; passing nil panics.
-func RandomLetter(r *rand.Rand) string {
-	return string(rune('a' + r.Intn(26)))
+func RandomLetters(r *rand.Rand, n int) string {
+	if n <= 0 {
+		return ""
+	}
+	buf := make([]byte, n)
+	for i := range buf {
+		buf[i] = byte('a' + r.Intn(26))
+	}
+	return string(buf)
 }
 

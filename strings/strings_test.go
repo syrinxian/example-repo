@@ -57,38 +57,52 @@ func TestAppend(t *testing.T) {
 	}
 }
 
-func TestRandomLetter(t *testing.T) {
+func TestRandomLetters(t *testing.T) {
 	r := rand.New(rand.NewSource(42))
 
-	// Call RandomLetter 100 times and verify each result is a single lowercase letter.
-	cases := make([]struct{ call int }, 100)
-	for i := range cases {
-		cases[i].call = i
+	cases := []struct {
+		n        int
+		wantLen  int
+		wantEmpty bool
+	}{
+		{0, 0, true},
+		{-1, 0, true},
+		{1, 1, false},
+		{5, 5, false},
+		{26, 26, false},
 	}
+
 	for _, c := range cases {
-		got := RandomLetter(r)
-		if len(got) != 1 {
-			t.Errorf("call %d: RandomLetter() = %q, want length 1", c.call, got)
+		got := RandomLetters(r, c.n)
+		if c.wantEmpty {
+			if got != "" {
+				t.Errorf("RandomLetters(r, %d) = %q, want \"\"", c.n, got)
+			}
 			continue
 		}
-		ch := rune(got[0])
-		if ch < 'a' || ch > 'z' {
-			t.Errorf("call %d: RandomLetter() = %q, rune %q is not in range 'a'-'z'", c.call, got, ch)
+		if len(got) != c.wantLen {
+			t.Errorf("RandomLetters(r, %d) = %q, want length %d", c.n, got, c.wantLen)
+			continue
+		}
+		for i, ch := range got {
+			if ch < 'a' || ch > 'z' {
+				t.Errorf("RandomLetters(r, %d) = %q, rune %d (%q) is not in range 'a'-'z'", c.n, got, i, ch)
+			}
 		}
 	}
 
-	// Verify that two different seeds produce at least one distinct letter across a sample.
+	// Verify that two different seeds produce at least one distinct result across a sample.
 	r1 := rand.New(rand.NewSource(1))
 	r2 := rand.New(rand.NewSource(99999))
 	distinct := false
 	for i := 0; i < 50; i++ {
-		if RandomLetter(r1) != RandomLetter(r2) {
+		if RandomLetters(r1, 1) != RandomLetters(r2, 1) {
 			distinct = true
 			break
 		}
 	}
 	if !distinct {
-		t.Error("RandomLetter with two different seeds produced identical letters for 50 consecutive calls; expected at least one difference")
+		t.Error("RandomLetters with two different seeds produced identical results for 50 consecutive calls; expected at least one difference")
 	}
 }
 
