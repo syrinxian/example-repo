@@ -25,4 +25,5 @@ import "github.com/syrinxian/example-repo/strings"
 | `Repeat(s string, n int) string` | Returns `s` concatenated `n` times; returns `""` when `n <= 0`. |
 | `Reverse(s string) string` | Returns `s` with its runes in reversed order, correctly handling multi-byte UTF-8 characters. |
 | `Append(s, suffix string) string` | Returns `s` with `suffix` concatenated onto the end. |
+| `RandomLetter(r *rand.Rand) string` | Returns a single randomly chosen lowercase ASCII letter (`'a'`–`'z'`). Pass a seeded `*rand.Rand` for reproducible results. |
 
