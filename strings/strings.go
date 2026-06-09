@@ -2,6 +2,8 @@
 // AgentPatron end-to-end smoke test repository.
 package strings
 
+import "math/rand"
+
 // Repeat returns s concatenated n times. If n is <= 0 it returns "".
 func Repeat(s string, n int) string {
 	if n <= 0 {
@@ -27,5 +29,19 @@ func Reverse(s string) string {
 // Append returns s with suffix concatenated onto the end.
 func Append(s, suffix string) string {
 	return s + suffix
+}
+
+// RandomLetters returns a string of n randomly chosen lowercase ASCII letters
+// ('a'–'z'). When n <= 0 it returns "".
+// Pass a seeded *rand.Rand for reproducible results; passing nil panics.
+func RandomLetters(r *rand.Rand, n int) string {
+	if n <= 0 {
+		return ""
+	}
+	buf := make([]byte, n)
+	for i := range buf {
+		buf[i] = byte('a' + r.Intn(26))
+	}
+	return string(buf)
 }
 
