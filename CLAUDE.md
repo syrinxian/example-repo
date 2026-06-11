@@ -5,9 +5,8 @@ repository.
 
 ## Repository overview
 
-`example-repo` is a small throwaway Go module used by the AgentPatron
-end-to-end smoke test. It contains a single `strings` package with three
-exported helper functions.
+`example-repo` is a small throwaway Go module containing a `strings`
+utility package with helper functions.
 
 ## Module information
 

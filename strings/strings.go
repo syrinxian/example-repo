@@ -1,5 +1,4 @@
-// Package strings provides small string utility helpers used by the
-// AgentPatron end-to-end smoke test repository.
+// Package strings provides small string utility helpers.
 package strings
 
 import (
