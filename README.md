@@ -1,3 +1,5 @@
+[![CleverCrow](https://img.shields.io/endpoint?url=https%3A%2F%2Fapp.clevercrow.io%2Fapi%2Fpublic%2Fbadge%2Fsyrinxian%2Fexample-repo)](https://clevercrow.io)
+
 # example-repo
 
 A small throwaway Go module containing a `strings` utility package with
