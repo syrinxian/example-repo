@@ -94,6 +94,41 @@ func TestRandomNumberString(t *testing.T) {
 	}
 }
 
+func TestFirstName(t *testing.T) {
+	r := rand.New(rand.NewSource(42))
+
+	// Build a lookup set of known names.
+	knownNames := make(map[string]bool, len(firstNames))
+	for _, name := range firstNames {
+		knownNames[name] = true
+	}
+
+	// Call FirstName several times with a fixed seed and verify results.
+	for i := 0; i < 20; i++ {
+		got := FirstName(r)
+		if got == "" {
+			t.Errorf("FirstName call %d returned an empty string", i)
+		}
+		if !knownNames[got] {
+			t.Errorf("FirstName call %d returned %q, which is not in the known names list", i, got)
+		}
+	}
+
+	// Verify that two different seeds produce at least one distinct result across a sample.
+	r1 := rand.New(rand.NewSource(1))
+	r2 := rand.New(rand.NewSource(99999))
+	distinct := false
+	for i := 0; i < 50; i++ {
+		if FirstName(r1) != FirstName(r2) {
+			distinct = true
+			break
+		}
+	}
+	if !distinct {
+		t.Error("FirstName with two different seeds produced identical results for 50 consecutive calls; expected at least one difference")
+	}
+}
+
 func TestRandomLetters(t *testing.T) {
 	r := rand.New(rand.NewSource(42))
 
