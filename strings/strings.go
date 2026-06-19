@@ -55,3 +55,17 @@ func RandomLetters(r *rand.Rand, n int) string {
 	}
 	return string(buf)
 }
+
+// firstNames is the pool from which FirstName draws.
+var firstNames = []string{
+	"Alice", "Bob", "Carol", "David", "Eve",
+	"Frank", "Grace", "Hank", "Ivy", "Jack",
+	"Karen", "Leo", "Mia", "Nate", "Olivia",
+	"Pete", "Quinn", "Rose", "Sam", "Tina",
+}
+
+// FirstName returns a randomly chosen first name from a built-in list.
+// Pass a seeded *rand.Rand for reproducible results; passing nil panics.
+func FirstName(r *rand.Rand) string {
+	return firstNames[r.Intn(len(firstNames))]
+}

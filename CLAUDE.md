@@ -56,6 +56,7 @@ Import path: `github.com/syrinxian/example-repo/strings`
 | `Reverse(s string) string` | Returns `s` with its runes in reversed order; correctly handles multi-byte UTF-8 characters. |
 | `Append(s, suffix string) string` | Returns `s` with `suffix` concatenated onto the end. |
 | `RandomLetters(r *rand.Rand, n int) string` | Returns a string of `n` randomly chosen lowercase ASCII letters (`'a'`–`'z'`); returns `""` when `n <= 0`. Pass a seeded `*rand.Rand` for reproducible results. |
+| `FirstName(r *rand.Rand) string` | Returns a randomly chosen first name from a built-in list of 20 common names. Pass a seeded `*rand.Rand` for reproducible results. |
 
 ## Coding conventions
 
